@@ -72,7 +72,6 @@
   </body>
 </html> -->
 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -81,7 +80,10 @@
     <link rel="stylesheet" href="src/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat Bot</title>
-    <script src="https://unpkg.com/deep-chat@2.1.1/dist/deepChat.bundle.js" type="module"></script>
+    <script
+      src="https://unpkg.com/deep-chat@2.1.1/dist/deepChat.bundle.js"
+      type="module"
+    ></script>
   </head>
   <body>
     <deep-chat
@@ -89,13 +91,66 @@
       style="
         display: flex;
         flex: 1;
-        width: 600px;
+        width: 800px;
         height: 100%;
         border-radius: 16px 16px 0 0;
         margin: 15px auto;
       "
       demo="true"
-    ></deep-chat>
+      connect='{"stream": true}'
+      avatars='{
+        "default": {"styles": {"avatar": {"height": "30px", "width": "30px", "paddingTop":"0", "marginTop":"5px"}, "container": {"marginTop": "8px"}}},
+        "ai": {"src": "/public/favicon-32x32.png", "styles": {"avatar": {"marginLeft": "-3px"}}},
+        "user": {"src": "/public/default-avatar.png","styles": {"avatar": {"borderRadius":"25px"}}}
+      }'
+    >
+      <div
+        style="
+          max-width: 400px;
+          margin: 20px auto;
+          padding: 20px;
+          background: #000;
+          border: 1px solid #cccccc61;
+          border-radius: 10px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          text-align: center;
+          color: #fff;
+        "
+      >
+        <!-- Logo placeholder - you can replace with actual image -->
+        <div
+          style="
+            width: 150px;
+            height: 120px;
+            margin: 0 auto 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: inherit;
+            font-size: 40px;
+            font-family: Arial, sans-serif;
+          "
+        >
+          <img src="/public/logo-512.png" style="width: 100%; height: 100%;" alt="" />
+        </div>
+        <h2
+          style="margin: 0 0 10px; color: rgb(100 100 204); font-family: Arial, sans-serif"
+        >
+         AI
+        </h2>
+        <p
+          style="
+            margin: 0;
+            color: inherit;
+            font-family: Arial, sans-serif;
+            line-height: 1.4;
+          "
+        >
+          Your personal AI companion for wisdom, insights, and daily guidance in
+          your pocket.
+        </p>
+      </div>
+    </deep-chat>
 
     <!-- <button id="my-btn" class="chat-action-btn">Click Me</button> -->
 

@@ -8,7 +8,7 @@ export const applyChatStyles = ($chat) => {
   $chat.messageStyles = {
     loading: {
       html: `<div class="lds-ripple"><div></div><div></div></div>`,
-      bubble: { backgroundColor: "transparent", padding: "0" },
+      bubble: { backgroundColor: "#555555", padding: "10px" },
     },
     default: chat_default,
     html: {

@@ -10,7 +10,7 @@ export const chat_default = {
     user: {
       bubble: {
         ...{background:
-          "linear-gradient(0deg,rgb(30, 255, 0) 0%, #1a3bb5 100%), linear-gradient(180deg, #6989F4 0%, #3C64F4 100%)",
+          "linear-gradient(0deg, #1a3bb5 0%, #1a3bb5 100%), linear-gradient(180deg, #6989F4 0%, #3C64F4 100%)",
         marginLeft: "auto",}
       },
     },

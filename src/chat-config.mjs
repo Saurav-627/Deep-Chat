@@ -27,9 +27,9 @@ export const configureChat = () => {
     },
   };
 
-  $chat.introMessage = {
-    text: "Rock, Paper, Scissors! Make your guess and see who wins!",
-  };
+  // $chat.introMessage = {
+  //   text: "Rock, Paper, Scissors! Make your guess and see who wins!",
+  // };
 
   $chat.demo = {
     response: (message) => {
@@ -44,7 +44,9 @@ export const configureChat = () => {
         response += aiOption === "scissors" ? "I win!" : "You win!";
       else if (userOption === "scissors")
         response += aiOption === "rock" ? "I win!" : "You win!";
-      else response = "Guess either Rock, Paper or Scissors";
+      else
+        response =
+          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur, consequuntur. Non nulla eius odit reprehenderit, dolorum ex impedit quidem explicabo magni a maiores aspernatur voluptas et cum alias minima temporibus inventore atque voluptatum reiciendis laudantium est expedita tenetur? Modi labore quia saepe ad ipsa placeat corporis earum, est eos aliquid.    Guess either Rock, Paper or Scissors. Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, exercitationem rem doloribus neque mollitia optio necessitatibus, nulla fuga suscipit ipsum architecto accusantium, ratione dolor cumque saepe esse officia magnam ut laborum in incidunt eos autem. Ipsa, possimus rem eligendi magnam illum tempora labore sit perspiciatis nihil cupiditate totam consectetur ut!  ";
       return { text: response };
     },
   };
