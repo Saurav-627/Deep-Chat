@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+
+    <script
+      src="https://unpkg.com/deep-chat@2.1.1/dist/deepChat.bundle.js"
+      type="module"
+    ></script>
+  </head>
+  <body>
+    <div id="app">
+      <deep-chat
+        style="
+          width: 450px;
+          height: 600px;
+          border: 2px solid #ffffff1a;
+          border-radius: 15px;
+          background-color: #1e1e1e;
+        "
+        containerStyle='{"backgroundColor": "#2a2a2a", "padding": "20px", "transition": "all 0.3s ease"}'
+        introPanelStyle='{
+    "backgroundColor": "#3c3c3c",
+    "color": "#ffffff",
+    "padding": "15px",
+    "textAlign": "center",
+    "opacity": "0",
+    "transform": "translateY(-20px)",
+    "animation": "slideIn 0.5s ease forwards"
+  }'
+        inputAreaStyle='{
+    "backgroundColor": "#333333",
+    "borderTop": "1px solid #ffffff1a",
+    "padding": "15px",
+    "transition": "background-color 0.3s ease"
+  }'
+        submitButtonStyles='{
+    "submit": {
+      "backgroundColor": "#6200ea",
+      "color": "white",
+      "borderRadius": "8px",
+      "padding": "8px 15px",
+      "transition": "transform 0.2s ease, background-color 0.2s ease"
+    },
+    "hover": {
+      "backgroundColor": "#7c4dff",
+      "transform": "scale(1.05)"
+    }
+  }'
+        messageListStyle='{"backgroundColor": "#2a2a2a", "padding": "10px"}'
+        messageStyles='{
+    "default": {
+      "shared": {"bubble": {"color": "#ffffff", "transition": "opacity 0.3s ease"}},
+      "user": {"bubble": {"backgroundColor": "#6200ea"}},
+      "ai": {"bubble": {"backgroundColor": "#ab9c98"}},
+      "loading": {"bubble": {"backgroundColor": "#3c3c3c"}}
+    }
+  }'
+        introMessage='{"text": "Welcome to Dark Mode Chat!"}'
+        history='[
+    {"text": "Hey there!", "role": "user"},
+    {"text": "Hello! How can I assist?", "role": "ai"}
+  ]'
+        demo="true"
+      ></deep-chat>
+    </div>
+
+    <script type="module" src="/src/chat-bot-demo.mjs"></script>
+  </body>
+</html>

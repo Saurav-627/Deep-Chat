@@ -8,7 +8,7 @@ export const applyChatStyles = ($chat) => {
   $chat.messageStyles = {
     loading: {
       html: `<div class="lds-ripple"><div></div><div></div></div>`,
-      bubble: { backgroundColor: "#555555", padding: "10px" },
+      bubble: { backgroundColor: "rgba(255, 255, 255, 0.30)", padding: "10px" },
     },
     default: chat_default,
     html: {
@@ -20,7 +20,8 @@ export const applyChatStyles = ($chat) => {
       /* Chat container */
       #chat-view {
         // background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-        background: #07182e;
+        // background: #07182e;
+        background: rgba(7, 24, 46, 0.93);
         border: none;
         border-radius: 16px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
@@ -121,14 +122,14 @@ export const applyChatStyles = ($chat) => {
     .inside-right{
         position: absolute;
         right: calc(10% + 1.1em);
-        bottom: 2.85em;
+        bottom: 2.95em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
       .input-button #submit-icon{
         width:2.21em;
-      }
-      .input-button:hover {
-        background: #357abd;
       }
     `;
 };

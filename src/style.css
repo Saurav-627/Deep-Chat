@@ -12,8 +12,13 @@
   -moz-osx-font-smoothing: grayscale;
 } */
 
-:root{
-  --primary-background-color: linear-gradient(180deg, #000 0%, #191847 71.25%, #232163 100%);
+:root {
+  --primary-background-color: linear-gradient(
+    180deg,
+    #000 0%,
+    #191847 71.25%,
+    #232163 100%
+  );
 }
 
 html,
@@ -22,7 +27,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--primary-background-color) no-repeat ;
+  background: var(--primary-background-color) no-repeat;
   height: 100lvh;
 }
 
@@ -33,3 +38,19 @@ body {
 deep-chat {
   --deep-conversation-chat-view-border: 3px dashed blue;
 }
+
+.demo-chat {
+  display: flex !important;
+  flex: 1;
+  width: 800px !important;
+  height: 100% !important;
+  border-radius: 16px 16px 0 0 !important;
+  margin: 15px auto !important;
+  background: url("/public/astroimage2.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  border-width: 1px;
+  border-style: solid;
+}
+
