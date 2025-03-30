@@ -4,6 +4,6 @@ import { setupChatHistory } from './chat-history.mjs';
 import { setupChatEvents } from './chat-events.mjs';
 
 const $chat = configureChat();
-applyChatStyles($chat);
+const updateStyles = applyChatStyles($chat);
 setupChatHistory($chat);
-setupChatEvents($chat);
+setupChatEvents($chat, updateStyles);

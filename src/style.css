@@ -19,9 +19,14 @@
     #191847 71.25%,
     #232163 100%
   );
+  --primary-background-color-light: linear-gradient(
+    180deg,
+    #fff -23.05%,
+    #eef2f8 47.88%,
+    #d6dfee 147.61%
+  );
 }
 
-html,
 body {
   display: flex;
   flex-direction: column;
@@ -29,6 +34,10 @@ body {
   align-items: center;
   background: var(--primary-background-color) no-repeat;
   height: 100lvh;
+}
+
+body.light-mode {
+  background: var(--primary-background-color-light) no-repeat;
 }
 
 .chat-action-btn {
@@ -46,7 +55,7 @@ deep-chat {
   height: 100% !important;
   border-radius: 16px 16px 0 0 !important;
   margin: 15px auto !important;
-  background: url("/public/astroimage2.jpg") !important;
+  background: url("/astroimage2.jpg") !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -54,3 +63,30 @@ deep-chat {
   border-style: solid;
 }
 
+/* src/style.css */
+#my-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+body.dark-mode #my-btn {
+  background: rgb(4, 36, 74);
+  color: #fff;
+  border: 1px solid gray;
+}
+
+body.light-mode #my-btn {
+  background: #e0e0e0;
+  color: #333;
+  border: 1px solid #cccccc;
+}
+
+body.light-mode #my-btn:hover {
+  background: #d0d0d0;
+}
+
+body.dark-mode #my-btn:hover {
+  background: rgb(3, 43, 83);
+}

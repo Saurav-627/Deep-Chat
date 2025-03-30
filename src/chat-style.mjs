@@ -1,10 +1,7 @@
-//TODO: This file manages all styling, including messageStyles and auxiliaryStyle.
-// chat-styles.mjs
-
 import { chat_default } from "./theme/chat";
 
-// src/chat-styles.mjs
 export const applyChatStyles = ($chat) => {
+  const shadowRoot = $chat.shadowRoot || $chat.attachShadow({ mode: "open" });
   $chat.messageStyles = {
     loading: {
       html: `<div class="lds-ripple"><div></div><div></div></div>`,
@@ -16,35 +13,74 @@ export const applyChatStyles = ($chat) => {
     },
   };
 
-  $chat.auxiliaryStyle = /*css*/ `
-      /* Chat container */
+  const style = document.createElement("style");
+  if (shadowRoot) {
+    shadowRoot.appendChild(style);
+  } else {
+    console.error("ShadowRoot not found!");
+    return () => {};
+  }
+
+  const updateStyles = (isLightMode) => {
+    style.textContent = /*css*/ `
+      .chat-container {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        background: ${isLightMode ? "#f5f5f5" : "#00000052"};
+        border: 1px solid ${isLightMode ? "#cccccc" : "#cccccc33"};
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        color: ${isLightMode ? "#333" : "#fff"};
+      }
+      .logo-wrapper {
+        width: 150px;
+        height: 120px;
+        margin: 0 auto 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: inherit;
+        font-size: 40px;
+        font-family: Arial, sans-serif;
+      }
+      .logo-img {
+        width: 100%;
+        height: 100%;
+      }
+      .chat-title {
+        margin: 0 0 10px;
+        color: ${isLightMode ? "#4a90e2" : "rgb(100, 100, 204)"};
+        font-family: Arial, sans-serif;
+      }
+      .chat-description {
+        margin: 0;
+        color: inherit;
+        font-family: Arial, sans-serif;
+        line-height: 1.4;
+      }
       #chat-view {
-        // background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-        // background: #07182e;
-        background: rgba(7, 24, 46, 0.93);
+        background: ${isLightMode ? "#ffffffe0" : "rgba(7, 24, 46, 0.93)"};
         border: none;
         border-radius: 16px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, ${isLightMode ? "0.1" : "0.5"});
         padding: 15px;
       }
-  
-      /* Scrollbar styling */
       #messages::-webkit-scrollbar {
         width: 4px;
       }
       #messages::-webkit-scrollbar-track {
-        background: #2d2d2d;
+        background: ${isLightMode ? "#e0e0e0" : "#2d2d2d"};
         border-radius: 4px;
       }
       #messages::-webkit-scrollbar-thumb {
-        background: #4a90e2;
+        background: ${isLightMode ? "#a0a0a0" : "#4a90e2"};
         border-radius: 4px;
       }
       #messages::-webkit-scrollbar-thumb:hover {
-        background: #357abd;
+        background: ${isLightMode ? "#808080" : "#357abd"};
       }
-  
-      /* Ripple loading animation */
       .lds-ripple {
         display: inline-block;
         position: relative;
@@ -54,7 +90,7 @@ export const applyChatStyles = ($chat) => {
       }
       .lds-ripple div {
         position: absolute;
-        border: 3px solid #4a90e2;
+        border: 3px solid ${isLightMode ? "#a0a0a0" : "#4a90e2"};
         opacity: 1;
         border-radius: 50%;
         animation: lds-ripple 1.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
@@ -67,69 +103,83 @@ export const applyChatStyles = ($chat) => {
         5% { top: 28px; left: 28px; width: 4px; height: 4px; opacity: 1; }
         100% { top: 0; left: 0; width: 60px; height: 60px; opacity: 0; }
       }
-  
-      /* Custom button styles */
       .chat-action-btn {
-        background: rgb(4 36 74);
-        color: #fff;
-        border: 1px solid gray;
+        background: ${isLightMode ? "#e0e0e0" : "rgb(4, 36, 74)"};
+        color: ${isLightMode ? "#333" : "#fff"};
+        border: 1px solid ${isLightMode ? "#cccccc" : "gray"};
         padding: 8px 16px;
         border-radius: 8px;
-        cursor: pointer;
-        transition: background 0.3s ease, transform 0.2s ease;
+        cursor: pointer;       
       }
       .chat-action-btn:hover {
-        background:rgb(3, 43, 83);
+        transition: background 0.3s ease, transform 0.2s ease;
+        background: ${isLightMode ? "#d0d0d0" : "rgb(3, 43, 83)"};
         transform: translateY(-2px);
       }
-
-      /* Input field styling */
+      /*Input field styling   */
       #input{
-        box-shadow: rgba(255, 255, 255, 0.03) 0px 4px 0px 0px inset;
+        box-shadow: rgba(255, 255, 255, 0.03) 0px 4px 0px 0px inset !important;
       }
       #text-input-container {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 12px;
-        padding: 10px;
-        margin: 15px 0 30px 0px;
-        box-shadow: inset 0 2px 8px (255, 255, 255, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        transition: border-color 0.3s ease;
+        background: ${
+          isLightMode ? "#fafafa" : "rgba(255, 255, 255, 0.05)"
+        } !important;
+        border-radius: 12px !important;
+        padding: 10px !important;
+        margin: 15px 0 30px 0 !important;
+        box-shadow: inset 0 2px 8px rgba(${
+          isLightMode ? "0, 0, 0" : "255, 255, 255"
+        }, 0.1) !important;
+        border: 1px solid ${
+          isLightMode ? "#e0e0e0" : "rgba(255, 255, 255, 0.2)"
+        } !important;
+        
       }
       #text-input-container:focus-within {
-        border-color: #357abd;
-        box-shadow: inset 0 2px 8px (255, 255, 255, 0.4), 0 0 8px rgba(74, 144, 226, 0.5);
+        transition: border-color 0.3s ease !important;
+        border-color: ${isLightMode ? "#a0a0a0" : "#357abd"} !important;
+        box-shadow: inset 0 2px 8px rgba(${
+          isLightMode ? "0, 0, 0" : "255, 255, 255"
+        }, 0.1), 0 0 8px rgba(${
+      isLightMode ? "160, 160, 160" : "74, 144, 226"
+    }, 0.5) !important;
       }
       #text-input {
-        background: transparent;
-        border: none;
-        color: #e0e0e0;
-        font-size: 16px;
-        padding: 8px;
-        width: 100%;
-        outline: none;
-        resize: none;
+        background: transparent !important;
+        border: none !important;
+        color: ${isLightMode ? "#333" : "#e0e0e0"} !important;
+        font-size: 16px !important;
+        padding: 8px !important;
+        width: 100% !important;
+        outline: none !important;
+        resize: none !important;
       }
       #text-input::placeholder {
-        color: #888888;
-        opacity: 0.8;
+        color: ${isLightMode ? "#888" : "#888888"} !important;
+        opacity: 0.8 !important;
       }
       #text-input:focus {
-        color: #ffffff;
+        color: ${isLightMode ? "#000" : "#ffffff"} !important;
       }
 
-      /* Send button (if present) */
-    .inside-right{
-        position: absolute;
-        right: calc(10% + 1.1em);
-        bottom: 2.95em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
+      .inside-right{
+        position: absolute !important;
+        right: calc(10% + 1.1em) !important;
+        bottom: 2.95em !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+        
       .input-button #submit-icon{
-        width:2.21em;
-      }
+        width:2.21em !important;
+       }
     `;
+    console.log("Styles updated to:", isLightMode ? "light" : "dark");
+  };
+
+  // Initial style application
+  updateStyles(false);
+
+  return updateStyles;
 };
