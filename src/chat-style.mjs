@@ -67,9 +67,12 @@ export const applyChatStyles = ($chat) => {
       #chat-view {
         background: ${isLightMode ? "#ffffffde" : "rgba(7, 24, 46, 0.93)"};
         border: none;
-        border-radius: 16px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, ${isLightMode ? "0.1" : "0.5"});
         padding: 15px;
+
+        @media(max-width:576px){
+          padding:0;
+        }
       }
       #messages::-webkit-scrollbar {
         width: 4px;
