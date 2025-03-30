@@ -1,17 +1,7 @@
-import { chat_default } from "./theme/chat";
+import { chat_default, chat_light_mode } from "./theme/chat";
 
 export const applyChatStyles = ($chat) => {
   const shadowRoot = $chat.shadowRoot || $chat.attachShadow({ mode: "open" });
-  $chat.messageStyles = {
-    loading: {
-      html: `<div class="lds-ripple"><div></div><div></div></div>`,
-      bubble: { backgroundColor: "rgba(255, 255, 255, 0.30)", padding: "10px" },
-    },
-    default: chat_default,
-    html: {
-      shared: { bubble: { backgroundColor: "transparent", padding: "0" } },
-    },
-  };
 
   const style = document.createElement("style");
   if (shadowRoot) {
@@ -22,6 +12,20 @@ export const applyChatStyles = ($chat) => {
   }
 
   const updateStyles = (isLightMode) => {
+    $chat.LoadingMessageStyles = {
+      loading: {
+        bubble: {
+          backgroundColor: "rgba(255, 255, 255, 0.30)",
+          padding: "10px",
+        },
+      },
+    };
+    $chat.messageStyles = {
+      default: isLightMode ? chat_light_mode : chat_default,
+      html: {
+        shared: { bubble: { backgroundColor: "transparent", padding: "0" } },
+      },
+    };
     style.textContent = /*css*/ `
       .chat-container {
         max-width: 400px;
@@ -61,7 +65,7 @@ export const applyChatStyles = ($chat) => {
         line-height: 1.4;
       }
       #chat-view {
-        background: ${isLightMode ? "#ffffffe0" : "rgba(7, 24, 46, 0.93)"};
+        background: ${isLightMode ? "#ffffffde" : "rgba(7, 24, 46, 0.93)"};
         border: none;
         border-radius: 16px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, ${isLightMode ? "0.1" : "0.5"});
@@ -80,28 +84,6 @@ export const applyChatStyles = ($chat) => {
       }
       #messages::-webkit-scrollbar-thumb:hover {
         background: ${isLightMode ? "#808080" : "#357abd"};
-      }
-      .lds-ripple {
-        display: inline-block;
-        position: relative;
-        width: 60px;
-        height: 60px;
-        margin: 10px auto;
-      }
-      .lds-ripple div {
-        position: absolute;
-        border: 3px solid ${isLightMode ? "#a0a0a0" : "#4a90e2"};
-        opacity: 1;
-        border-radius: 50%;
-        animation: lds-ripple 1.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-      }
-      .lds-ripple div:nth-child(2) {
-        animation-delay: -0.6s;
-      }
-      @keyframes lds-ripple {
-        0% { top: 28px; left: 28px; width: 4px; height: 4px; opacity: 0; }
-        5% { top: 28px; left: 28px; width: 4px; height: 4px; opacity: 1; }
-        100% { top: 0; left: 0; width: 60px; height: 60px; opacity: 0; }
       }
       .chat-action-btn {
         background: ${isLightMode ? "#e0e0e0" : "rgb(4, 36, 74)"};
@@ -127,9 +109,6 @@ export const applyChatStyles = ($chat) => {
         border-radius: 12px !important;
         padding: 10px !important;
         margin: 15px 0 30px 0 !important;
-        box-shadow: inset 0 2px 8px rgba(${
-          isLightMode ? "0, 0, 0" : "255, 255, 255"
-        }, 0.1) !important;
         border: 1px solid ${
           isLightMode ? "#e0e0e0" : "rgba(255, 255, 255, 0.2)"
         } !important;
@@ -138,11 +117,6 @@ export const applyChatStyles = ($chat) => {
       #text-input-container:focus-within {
         transition: border-color 0.3s ease !important;
         border-color: ${isLightMode ? "#a0a0a0" : "#357abd"} !important;
-        box-shadow: inset 0 2px 8px rgba(${
-          isLightMode ? "0, 0, 0" : "255, 255, 255"
-        }, 0.1), 0 0 8px rgba(${
-      isLightMode ? "160, 160, 160" : "74, 144, 226"
-    }, 0.5) !important;
       }
       #text-input {
         background: transparent !important;
@@ -176,6 +150,7 @@ export const applyChatStyles = ($chat) => {
        }
     `;
     console.log("Styles updated to:", isLightMode ? "light" : "dark");
+    console.log(isLightMode);
   };
 
   // Initial style application

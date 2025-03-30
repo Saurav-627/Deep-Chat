@@ -39,6 +39,7 @@ export const chat_light_mode = {
         background:
           "linear-gradient(0deg, #4285f4 0%, #4285f4 100%), linear-gradient(180deg, #6989F4 0%, #3C64F4 100%)", // Softer blue gradient for light mode
         marginLeft: "auto",
+        color: "#ffffff",
       },
     },
   },

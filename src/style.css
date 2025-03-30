@@ -51,7 +51,7 @@ deep-chat {
 .demo-chat {
   display: flex !important;
   flex: 1;
-  width: 800px !important;
+  width: clamp(100%, 800px, 100%) !important;
   height: 100% !important;
   border-radius: 16px 16px 0 0 !important;
   margin: 15px auto !important;
