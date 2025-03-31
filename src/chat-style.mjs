@@ -15,7 +15,9 @@ export const applyChatStyles = ($chat) => {
     $chat.LoadingMessageStyles = {
       loading: {
         bubble: {
-          backgroundColor: "rgba(255, 255, 255, 0.30)",
+          backgroundColor: isLightMode
+            ? "rgba(0, 0, 0, 0.30)"
+            : "rgba(255, 255, 255, 0.30)",
           padding: "10px",
         },
       },
@@ -31,7 +33,7 @@ export const applyChatStyles = ($chat) => {
         max-width: 400px;
         margin: 20px auto;
         padding: 20px;
-        background: ${isLightMode ? "#f5f5f5" : "#00000052"};
+        background: ${isLightMode ? "#faeeee61" : "#00000052"};
         border: 1px solid ${isLightMode ? "#cccccc" : "#cccccc33"};
         border-radius: 10px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -65,7 +67,7 @@ export const applyChatStyles = ($chat) => {
         line-height: 1.4;
       }
       #chat-view {
-        background: ${isLightMode ? "#ffffffde" : "rgba(7, 24, 46, 0.93)"};
+        background: ${isLightMode ? "#fffffff0" : "rgba(7, 24, 46, 0.93)"};
         border: none;
         box-shadow: 0 4px 20px rgba(0, 0, 0, ${isLightMode ? "0.1" : "0.5"});
         padding: 15px;
@@ -74,6 +76,13 @@ export const applyChatStyles = ($chat) => {
           padding:0;
         }
       }
+
+      #messages{
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+
       #messages::-webkit-scrollbar {
         width: 4px;
       }
@@ -148,8 +157,13 @@ export const applyChatStyles = ($chat) => {
         align-items: center !important;
       }
         
-      .input-button #submit-icon{
+      .input-button-container .input-button #submit-icon{
         width:2.21em !important;
+        filter: ${
+          isLightMode
+            ? "none"
+            : "brightness(0) saturate(100%) invert(70%) sepia(0%) saturate(5564%) hue-rotate(207deg) brightness(100%) contrast(97%)"
+        } !important;
        }
     `;
     console.log("Styles updated to:", isLightMode ? "light" : "dark");

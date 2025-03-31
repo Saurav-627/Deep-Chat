@@ -33,13 +33,24 @@
   box-sizing: border-box;
 }
 
+body.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body.loaded {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
 body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: var(--primary-background-color) no-repeat;
-  height: 100lvh;
+  height: 100vh;
 }
 
 body.light-mode {
@@ -61,17 +72,28 @@ deep-chat {
   height: 100% !important;
   border-radius: 16px 16px 0 0 !important;
   margin: 15px auto !important;
-  background: url("/astroimage2.jpg") !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
+  background: url("/astroimage2.jpg") no-repeat center/cover !important;
   border-width: 1px;
   border-style: solid;
+
+  .demo-chat.loaded {
+    opacity: 1;
+  }
+
+  @media (max-width:992px){
+    width: clamp(600px, 100vw, 900px) !important;
+  }
+
+  @media (max-width:768px){
+    width: clamp(450px, 100vw, 600px) !important;
+  }
 
   @media(max-width:576px){
     border-radius: 0 !important;
     width: clamp(100%, 385px, 100%) !important;
     border: none !important;
+    margin: 0 !important;
+    background-size: 200% 100% !important;
   }
 }
 

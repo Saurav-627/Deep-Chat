@@ -9,13 +9,13 @@ export const setupChatHistory = ($chat) => {
       { role: 'ai', html: `<button class="chat-action-btn">Select Birth Profile</button>` },
     ];
   
-    $chat.loadHistory = async function loadHistory(index) {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve([{ role: 'ai', text: 'History loaded!' }]);
-        }, 3000);
-      });
-    };
+    // $chat.loadHistory = async function loadHistory(index) {
+    //   return new Promise((resolve) => {
+    //     setTimeout(() => {
+    //       resolve([{ role: 'ai', text: 'History loaded!' }]);
+    //     }, 3000);
+    //   });
+    // };
   
-    $chat.loadHistory(0); // Trigger loading
+    // $chat.loadHistory(0); // Trigger loading
   };

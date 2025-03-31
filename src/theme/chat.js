@@ -45,7 +45,7 @@ export const chat_light_mode = {
   },
   ai: {
     bubble: {
-      background: "rgba(245, 245, 245, 0.85)", // Light gray background with slight transparency
+      background: "rgb(230 225 225)", // Light gray background with slight transparency
       marginRight: "auto",
     },
   },

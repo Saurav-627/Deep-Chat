@@ -14,6 +14,4 @@ export const setupChatEvents = ($chat, updateStyles) => {
     document.body.classList.toggle("light-mode", isLightMode);
     document.body.classList.toggle("dark-mode", !isLightMode);
   });
-  // Set initial dark mode
-  document.body.classList.add("dark-mode");
 };
